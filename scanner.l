@@ -15,17 +15,23 @@ MIENTRAS        "mientras"
 IMPRIMIR        "imprimir"
 ES              "es"
 CADENA          "cadena"
-PALABRA         ({LETRA})+  
-IDENTIFICADOR   {LETRA}+
+
+
+OPERADOR_ARITMETICO   [\+\-\*/%]
+OPERADOR_BOOLEANO     "=="|"!="|">"|"<"|">="|"<="
+SIGNOS_DE_PUNTUACION  [\(\)]
 
 %%
 
-{IDENTIFICADOR}  { if(strlen(yytext)<17) {printf("Entero: %s\n", yytext);} }
 {ENTERO}         { printf("Entero: %s\n", yytext); }
 {MIENTRAS}       { printf("Palabra reservada: %s\n", yytext); }
 {IMPRIMIR}       { printf("Palabra reservada: %s\n", yytext); }
 {ES}             { printf("Palabra reservada: %s\n", yytext); }
 {CADENA}         { printf("Palabra reservada: %s\n", yytext); }
+{OPERADOR_ARITMETICO} { printf("Operador aritmetico: %s\n", yytext); }
+{OPERADOR_BOOLEANO}   { printf("Operador booleano: %s\n", yytext); }
+{SIGNOS_DE_PUNTUACION} { printf("Signo de puntuacion: %s\n", yytext); }
+
 
 %%
 
@@ -42,6 +48,6 @@ int main(int argc, char **argv) {
         }
         yyin = archivo; // Asignar el archivo de entrada a yyin
     }
-    yylex(); // Llamar al analizador léxico
+    yylex(); // Llamar al analizador lexico
     return 0;
 }

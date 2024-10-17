@@ -4,3 +4,7 @@ imprimir(nombre).
 mientras (nombre == 'valor') {
     imprimir('Es igual').
 }
+
+mientras (x == 10) {
+    imprimir('x');
+}
