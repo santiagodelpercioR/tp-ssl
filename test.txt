@@ -6,5 +6,5 @@ mientras (nombre == 'valor') {
 }
 
 mientras (x == 10) {
-    imprimir('x');
+    imprimir('x')
 }
