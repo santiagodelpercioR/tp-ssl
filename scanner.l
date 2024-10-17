@@ -13,6 +13,7 @@ MIENTRAS        "mientras"
 IMPRIMIR        "imprimir"
 ES              "es"
 CADENA          "cadena"
+
 LETRA           [a-z]
 ENTERO          [0-9]+
 
@@ -20,7 +21,7 @@ OPERADOR_ARITMETICO   [\+\-\*/%]
 OPERADOR_BOOLEANO     "=="|"!="|">"|"<"|">="|"<="
 SIGNOS_DE_PUNTUACION  [\(\)\{\}\.]
 
-PALABRA               \'[a-z]+\'
+LITERALCADENA               \'[a-z]+\' 
 
 IDENTIFICADOR         [a-z]+
 
@@ -35,7 +36,7 @@ IDENTIFICADOR         [a-z]+
 {OPERADOR_ARITMETICO} { printf("Operador aritmetico: %s\n", yytext); }
 {OPERADOR_BOOLEANO}   { printf("Operador booleano: %s\n", yytext); }
 {SIGNOS_DE_PUNTUACION} { printf("Signo de puntuacion: %s\n", yytext); }
-{PALABRA}        { printf("Palabra: %s\n", yytext); }
+{LITERALCADENA}        { printf("Literal Cadena: %s\n", yytext); }
 {IDENTIFICADOR}  { if (strlen(yytext) < 17) { printf("Identificador: %s\n", yytext); } }
 
 %%

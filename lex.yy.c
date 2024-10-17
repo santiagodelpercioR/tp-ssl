@@ -692,7 +692,7 @@ YY_DECL
 		}
 
 	{
-#line 28 "scanner.l"
+#line 29 "scanner.l"
 
 
 #line 698 "lex.yy.c"
@@ -754,57 +754,57 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 30 "scanner.l"
+#line 31 "scanner.l"
 { printf("Palabra reservada: %s\n", yytext); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 31 "scanner.l"
+#line 32 "scanner.l"
 { printf("Palabra reservada: %s\n", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 32 "scanner.l"
+#line 33 "scanner.l"
 { printf("Palabra reservada: %s\n", yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 33 "scanner.l"
+#line 34 "scanner.l"
 { printf("Palabra reservada: %s\n", yytext); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 34 "scanner.l"
+#line 35 "scanner.l"
 { printf("Entero: %s\n", yytext); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 35 "scanner.l"
+#line 36 "scanner.l"
 { printf("Operador aritmetico: %s\n", yytext); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 36 "scanner.l"
+#line 37 "scanner.l"
 { printf("Operador booleano: %s\n", yytext); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 37 "scanner.l"
+#line 38 "scanner.l"
 { printf("Signo de puntuacion: %s\n", yytext); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 38 "scanner.l"
-{ printf("Palabra: %s\n", yytext); }
+#line 39 "scanner.l"
+{ printf("Literal Cadena: %s\n", yytext); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 39 "scanner.l"
+#line 40 "scanner.l"
 { if (strlen(yytext) < 17) { printf("Identificador: %s\n", yytext); } }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 41 "scanner.l"
+#line 42 "scanner.l"
 ECHO;
 	YY_BREAK
 #line 810 "lex.yy.c"
@@ -1812,7 +1812,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 41 "scanner.l"
+#line 42 "scanner.l"
 
 
 void manejar_error(const char *mensaje) {
