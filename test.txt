@@ -1,0 +1,6 @@
+cadena nombre
+nombre es 'valor'
+imprimir(nombre).
+mientras (nombre == 'valor') {
+    imprimir('Es igual').
+}
