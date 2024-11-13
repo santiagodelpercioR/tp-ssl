@@ -3,13 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-void yyerror(const char s);
+void yyerror(const char *s);
 int yylex(void);
 
 %}
 
-%token A_BINARIO A_TEXTO IMPRIMIR ES
-%token IDENTIFICADOR LITERALCADENA
+%union {
+    char *str;
+}
+
+%token <str> A_BINARIO A_TEXTO IMPRIMIR ES
+%token <str> IDENTIFICADOR LITERALCADENA
 
 %%
 
@@ -30,7 +34,7 @@ instruccion:
 
 %%
 
-void yyerror(const chars) {
+void yyerror(const char *s) {
     fprintf(stderr, "Error: %s\n", s);
 }
 

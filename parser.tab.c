@@ -73,7 +73,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void yyerror(const char s);
+void yyerror(const char *s);
 int yylex(void);
 
 
@@ -504,7 +504,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    17,    17,    21,    22,    26,    27,    28
+       0,    21,    21,    25,    26,    30,    31,    32
 };
 #endif
 
@@ -1067,20 +1067,20 @@ yyreduce:
   switch (yyn)
     {
   case 5: /* instruccion: A_BINARIO IDENTIFICADOR ES LITERALCADENA  */
-#line 26 "parser.y"
-                                             { printf("Convertir %s a binario con valor %s\n", yyvsp[-2], yyvsp[0]); }
+#line 30 "parser.y"
+                                             { printf("Convertir %s a binario con valor %s\n", (yyvsp[-2].str), (yyvsp[0].str)); }
 #line 1073 "parser.tab.c"
     break;
 
   case 6: /* instruccion: A_TEXTO IDENTIFICADOR ES LITERALCADENA  */
-#line 27 "parser.y"
-                                             { printf("Convertir %s a texto con valor %s\n", yyvsp[-2], yyvsp[0]); }
+#line 31 "parser.y"
+                                             { printf("Convertir %s a texto con valor %s\n", (yyvsp[-2].str), (yyvsp[0].str)); }
 #line 1079 "parser.tab.c"
     break;
 
   case 7: /* instruccion: IMPRIMIR IDENTIFICADOR  */
-#line 28 "parser.y"
-                             { printf("Imprimir %s\n", yyvsp[0]); }
+#line 32 "parser.y"
+                             { printf("Imprimir %s\n", (yyvsp[0].str)); }
 #line 1085 "parser.tab.c"
     break;
 
@@ -1278,10 +1278,10 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 31 "parser.y"
+#line 35 "parser.y"
 
 
-void yyerror(const chars) {
+void yyerror(const char *s) {
     fprintf(stderr, "Error: %s\n", s);
 }
 

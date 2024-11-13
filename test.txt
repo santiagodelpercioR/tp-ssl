@@ -1,7 +1,6 @@
 cadena1 es 'hola'.  
-cadenabinaria es a_binario cadena1.
-imprimir cadenabinaria.
+cadenaBinaria es a_binario cadena1.
+imprimir cadenaBinaria.
 
-binariotexto es a_texto cadenabinaria.
-imprimir binariotexto.
+
 
