@@ -354,8 +354,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 11
-#define YY_END_OF_BUFFER 12
+#define YY_NUM_RULES 8
+#define YY_END_OF_BUFFER 9
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -363,13 +363,12 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[44] =
+static const flex_int16_t yy_accept[41] =
     {   0,
-        0,    0,   12,   11,   11,    6,   11,    8,    5,    7,
-       11,    7,   10,   10,   10,   10,   10,    7,    0,    5,
-       10,   10,    3,   10,   10,    9,   10,   10,   10,   10,
-       10,   10,   10,   10,   10,    4,   10,   10,   10,   10,
-        2,    1,    0
+        0,    0,    9,    8,    8,    3,    8,    5,    2,    4,
+        8,    4,    7,    7,    7,    7,    7,    4,    0,    2,
+        7,    7,    1,    7,    7,    6,    7,    7,    7,    7,
+        7,    7,    7,    7,    7,    7,    7,    7,    7,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -411,46 +410,46 @@ static const YY_CHAR yy_meta[22] =
         2
     } ;
 
-static const flex_int16_t yy_base[46] =
+static const flex_int16_t yy_base[43] =
     {   0,
         0,    0,   51,   52,   42,   52,    0,   52,   43,   40,
        39,   38,    0,   35,   24,   27,   27,   52,   37,   34,
         0,   26,    0,   20,   23,   52,   22,   16,   17,   16,
-       17,   10,   20,   13,    9,    0,   12,   16,    6,    4,
-        0,    0,   52,   21,   20
+       17,   10,   20,   13,    9,   12,   16,    6,    4,   52,
+       21,   20
     } ;
 
-static const flex_int16_t yy_def[46] =
+static const flex_int16_t yy_def[43] =
     {   0,
-       43,    1,   43,   43,   43,   43,   44,   43,   43,   43,
-       43,   43,   45,   45,   45,   45,   45,   43,   44,   43,
-       45,   45,   45,   45,   45,   43,   45,   45,   45,   45,
-       45,   45,   45,   45,   45,   45,   45,   45,   45,   45,
-       45,   45,    0,   43,   43
+       40,    1,   40,   40,   40,   40,   41,   40,   40,   40,
+       40,   40,   42,   42,   42,   42,   42,   40,   41,   40,
+       42,   42,   42,   42,   42,   40,   42,   42,   42,   42,
+       42,   42,   42,   42,   42,   42,   42,   42,   42,    0,
+       40,   40
     } ;
 
 static const flex_int16_t yy_nxt[74] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
        13,   14,   13,   15,   16,   17,   13,   13,   13,   13,
-       13,   21,   19,   42,   41,   40,   39,   38,   37,   36,
+       13,   21,   19,   23,   23,   39,   38,   37,   36,   23,
        35,   34,   33,   32,   31,   30,   29,   28,   27,   20,
        26,   25,   24,   23,   22,   18,   18,   18,   20,   18,
-       43,    3,   43,   43,   43,   43,   43,   43,   43,   43,
-       43,   43,   43,   43,   43,   43,   43,   43,   43,   43,
-       43,   43,   43
+       40,    3,   40,   40,   40,   40,   40,   40,   40,   40,
+       40,   40,   40,   40,   40,   40,   40,   40,   40,   40,
+       40,   40,   40
     } ;
 
 static const flex_int16_t yy_chk[74] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,   45,   44,   40,   39,   38,   37,   35,   34,   33,
+        1,   42,   41,   39,   38,   37,   36,   35,   34,   33,
        32,   31,   30,   29,   28,   27,   25,   24,   22,   20,
        19,   17,   16,   15,   14,   12,   11,   10,    9,    5,
-        3,   43,   43,   43,   43,   43,   43,   43,   43,   43,
-       43,   43,   43,   43,   43,   43,   43,   43,   43,   43,
-       43,   43,   43
+        3,   40,   40,   40,   40,   40,   40,   40,   40,   40,
+       40,   40,   40,   40,   40,   40,   40,   40,   40,   40,
+       40,   40,   40
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -474,8 +473,8 @@ char *yytext;
 #include <string.h>
 
 void manejar_error(const char *mensaje);
+#line 476 "lex.yy.c"
 #line 477 "lex.yy.c"
-#line 478 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -695,7 +694,7 @@ YY_DECL
 #line 29 "scanner.l"
 
 
-#line 698 "lex.yy.c"
+#line 697 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -722,7 +721,7 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 44 )
+				if ( yy_current_state >= 41 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -760,54 +759,39 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 32 "scanner.l"
-{ printf("Palabra reservada: %s\n", yytext); }
+{ printf("Entero: %s\n", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 33 "scanner.l"
-{ printf("Palabra reservada: %s\n", yytext); }
+{ printf("Operador aritmetico: %s\n", yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 34 "scanner.l"
-{ printf("Palabra reservada: %s\n", yytext); }
+{ printf("Operador booleano: %s\n", yytext); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 35 "scanner.l"
-{ printf("Entero: %s\n", yytext); }
+{ printf("Signo de puntuacion: %s\n", yytext); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 36 "scanner.l"
-{ printf("Operador aritmetico: %s\n", yytext); }
+{ printf("Literal Cadena: %s\n", yytext); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 37 "scanner.l"
-{ printf("Operador booleano: %s\n", yytext); }
+{ if (strlen(yytext) < 17) { printf("Identificador: %s\n", yytext); } }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 38 "scanner.l"
-{ printf("Signo de puntuacion: %s\n", yytext); }
-	YY_BREAK
-case 9:
-YY_RULE_SETUP
 #line 39 "scanner.l"
-{ printf("Literal Cadena: %s\n", yytext); }
-	YY_BREAK
-case 10:
-YY_RULE_SETUP
-#line 40 "scanner.l"
-{ if (strlen(yytext) < 17) { printf("Identificador: %s\n", yytext); } }
-	YY_BREAK
-case 11:
-YY_RULE_SETUP
-#line 42 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 810 "lex.yy.c"
+#line 794 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1104,7 +1088,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 44 )
+			if ( yy_current_state >= 41 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1132,11 +1116,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 44 )
+		if ( yy_current_state >= 41 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 43);
+	yy_is_jam = (yy_current_state == 40);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1812,7 +1796,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 42 "scanner.l"
+#line 39 "scanner.l"
 
 
 void manejar_error(const char *mensaje) {
@@ -1820,14 +1804,18 @@ void manejar_error(const char *mensaje) {
     exit(1);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) {       // argc es el numero de argumentos , argv es el arreglo que contiene los argumentos. 
     if (argc > 1) {
         FILE *archivo = fopen(argv[1], "r");
         if (!archivo) {
             manejar_error("No se puede abrir el archivo");
         }
         yyin = archivo; // Asignar el archivo de entrada a yyin
+       } 
+    else {
+        printf("No se pasó ningún archivo. Usando entrada estándar.\n");
+        yyin = stdin;  // Si no se pasa archivo, leer desde stdin
     }
-    yylex(); // Llamar al analizador lexico
+    yylex();  // Ejecutar el analizador léxico
     return 0;
 }
