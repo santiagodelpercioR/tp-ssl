@@ -1,10 +1,7 @@
-cadena nombre
-nombre es 'valor'
-imprimir(nombre).
-mientras (nombre == 'valor') {
-    imprimir('Es igual').
-}
+cadena1 es 'hola'.  
+cadenabinaria es a_binario cadena1.
+imprimir cadenabinaria.
 
-mientras (x == 10) {
-    imprimir('x')
-}
+binariotexto es a_texto cadenabinaria.
+imprimir binariotexto.
+

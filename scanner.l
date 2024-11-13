@@ -2,39 +2,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "parser.tab.h"
 
 void manejar_error(const char *mensaje);
+
+extern FILE *yyin;
 %}
 
 %option noyywrap
 
-
-MIENTRAS        "mientras"
+A_BINARIO       "a_binario"
+A_TEXTO         "a_texto"
 IMPRIMIR        "imprimir"
 ES              "es"
-CADENA          "cadena"
 
 LETRA           [a-z]
-ENTERO          [0-9]+
+DIGITO_BINARIO  [0-1]
 
-OPERADOR_ARITMETICO   [\+\-\*/%]
-OPERADOR_BOOLEANO     "=="|"!="|">"|"<"|">="|"<="
-SIGNOS_DE_PUNTUACION  [\(\)\{\}\.]
+SIGNOS_DE_PUNTUACION  [\{\}\(\)\.]
 
 LITERALCADENA               \'[a-z]+\' 
 
-IDENTIFICADOR         [a-z]+
+IDENTIFICADOR   {LETRA}({LETRA}|{DIGITO_BINARIO}){0,15}
+
+WHITESPACE      [ \t]+
 
 
 %%
 
-{MIENTRAS}|{IMPRIMIR}|{ES}|{CADENA}  { printf("Palabra reservada: %s\n", yytext); }
-{ENTERO}         { printf("Entero: %s\n", yytext); }
-{OPERADOR_ARITMETICO} { printf("Operador aritmetico: %s\n", yytext); }
-{OPERADOR_BOOLEANO}   { printf("Operador booleano: %s\n", yytext); }
-{SIGNOS_DE_PUNTUACION} { printf("Signo de puntuacion: %s\n", yytext); }
-{LITERALCADENA}        { printf("Literal Cadena: %s\n", yytext); }
-{IDENTIFICADOR}  { if (strlen(yytext) < 17) { printf("Identificador: %s\n", yytext); } }
+{WHITESPACE}              ; // Ignora espacios y tabulaciones
+{A_BINARIO}       { return A_BINARIO; }
+{A_TEXTO}         { return A_TEXTO; }
+{IMPRIMIR}        { return IMPRIMIR; }
+{ES}              { return ES; }
+{LITERALCADENA}   { return LITERALCADENA; }
+{IDENTIFICADOR}   { return IDENTIFICADOR; }
 
 %%
 
