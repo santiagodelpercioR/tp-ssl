@@ -1,3 +1,4 @@
-a_binario myVar es "01001000"
-a_texto myVar es "Hello"
-imprimir myVar
+a_binario myVar es "hello".
+imprimir myVar.
+a_texto myVar es "011011010110010101110011".
+imprimir myVar.
