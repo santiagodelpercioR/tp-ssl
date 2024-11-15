@@ -76,8 +76,13 @@
 void yyerror(const char *s);
 int yylex(void);
 
+void bin_to_text(const char *bin);
+void text_to_bin(const char *text);
 
-#line 81 "parser.tab.c"
+extern FILE *yyin;
+extern int yylineno;  // Declaración externa de yylineno
+
+#line 86 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -112,12 +117,13 @@ enum yysymbol_kind_t
   YYSYMBOL_A_TEXTO = 4,                    /* A_TEXTO  */
   YYSYMBOL_IMPRIMIR = 5,                   /* IMPRIMIR  */
   YYSYMBOL_ES = 6,                         /* ES  */
-  YYSYMBOL_IDENTIFICADOR = 7,              /* IDENTIFICADOR  */
-  YYSYMBOL_LITERALCADENA = 8,              /* LITERALCADENA  */
-  YYSYMBOL_YYACCEPT = 9,                   /* $accept  */
-  YYSYMBOL_programa = 10,                  /* programa  */
-  YYSYMBOL_instrucciones = 11,             /* instrucciones  */
-  YYSYMBOL_instruccion = 12                /* instruccion  */
+  YYSYMBOL_FIN_SENTENCIA = 7,              /* FIN_SENTENCIA  */
+  YYSYMBOL_IDENTIFICADOR = 8,              /* IDENTIFICADOR  */
+  YYSYMBOL_LITERALCADENA = 9,              /* LITERALCADENA  */
+  YYSYMBOL_YYACCEPT = 10,                  /* $accept  */
+  YYSYMBOL_programa = 11,                  /* programa  */
+  YYSYMBOL_instrucciones = 12,             /* instrucciones  */
+  YYSYMBOL_instruccion = 13                /* instruccion  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -445,19 +451,19 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  10
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   13
+#define YYLAST   15
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  9
+#define YYNTOKENS  10
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  4
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  7
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  16
+#define YYNSTATES  19
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   263
+#define YYMAXUTOK   264
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -497,14 +503,14 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8
+       5,     6,     7,     8,     9
 };
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    21,    21,    25,    26,    30,    31,    32
+       0,    27,    27,    31,    32,    36,    37,    38
 };
 #endif
 
@@ -521,8 +527,8 @@ static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
 static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "A_BINARIO", "A_TEXTO",
-  "IMPRIMIR", "ES", "IDENTIFICADOR", "LITERALCADENA", "$accept",
-  "programa", "instrucciones", "instruccion", YY_NULLPTR
+  "IMPRIMIR", "ES", "FIN_SENTENCIA", "IDENTIFICADOR", "LITERALCADENA",
+  "$accept", "programa", "instrucciones", "instruccion", YY_NULLPTR
 };
 
 static const char *
@@ -532,7 +538,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-5)
+#define YYPACT_NINF (-6)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -546,8 +552,8 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,    -4,    -2,    -1,     4,    -3,    -5,     1,     2,    -5,
-      -5,    -5,     3,     5,    -5,    -5
+      -3,    -5,    -4,    -2,     5,    -3,    -6,     1,     2,     3,
+      -6,    -6,     0,     4,    -6,     7,     8,    -6,    -6
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -555,14 +561,14 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     0,     0,     0,     0,     2,     4,     0,     0,     7,
-       1,     3,     0,     0,     5,     6
+       0,     0,     0,     0,     0,     2,     4,     0,     0,     0,
+       1,     3,     0,     0,     7,     0,     0,     5,     6
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -5,    -5,    -5,     7
+      -6,    -6,    -6,     6
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -576,34 +582,34 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,     2,     3,     7,    10,     8,     9,    12,    13,     0,
-       0,    14,    11,    15
+       1,     2,     3,     7,     8,    10,     9,    12,    13,    15,
+      14,    11,     0,    16,    17,    18
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     4,     5,     7,     0,     7,     7,     6,     6,    -1,
-      -1,     8,     5,     8
+       3,     4,     5,     8,     8,     0,     8,     6,     6,     9,
+       7,     5,    -1,     9,     7,     7
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,     4,     5,    10,    11,    12,     7,     7,     7,
-       0,    12,     6,     6,     8,     8
+       0,     3,     4,     5,    11,    12,    13,     8,     8,     8,
+       0,    13,     6,     6,     7,     9,     9,     7,     7
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,     9,    10,    11,    11,    12,    12,    12
+       0,    10,    11,    12,    12,    13,    13,    13
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     1,     2,     1,     4,     4,     2
+       0,     2,     1,     2,     1,     5,     5,     3
 };
 
 
@@ -1066,26 +1072,26 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 5: /* instruccion: A_BINARIO IDENTIFICADOR ES LITERALCADENA  */
-#line 30 "parser.y"
-                                             { printf("Convertir %s a binario con valor %s\n", (yyvsp[-2].str), (yyvsp[0].str)); }
-#line 1073 "parser.tab.c"
-    break;
-
-  case 6: /* instruccion: A_TEXTO IDENTIFICADOR ES LITERALCADENA  */
-#line 31 "parser.y"
-                                             { printf("Convertir %s a texto con valor %s\n", (yyvsp[-2].str), (yyvsp[0].str)); }
+  case 5: /* instruccion: A_BINARIO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA  */
+#line 36 "parser.y"
+                                                           { bin_to_text((yyvsp[-1].str)); }
 #line 1079 "parser.tab.c"
     break;
 
-  case 7: /* instruccion: IMPRIMIR IDENTIFICADOR  */
-#line 32 "parser.y"
-                             { printf("Imprimir %s\n", (yyvsp[0].str)); }
+  case 6: /* instruccion: A_TEXTO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA  */
+#line 37 "parser.y"
+                                                           { text_to_bin((yyvsp[-1].str)); }
 #line 1085 "parser.tab.c"
     break;
 
+  case 7: /* instruccion: IMPRIMIR IDENTIFICADOR FIN_SENTENCIA  */
+#line 38 "parser.y"
+                                           { printf("Imprimir %s\n", (yyvsp[-1].str)); }
+#line 1091 "parser.tab.c"
+    break;
 
-#line 1089 "parser.tab.c"
+
+#line 1095 "parser.tab.c"
 
       default: break;
     }
@@ -1278,13 +1284,53 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 35 "parser.y"
+#line 41 "parser.y"
 
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Error: %s\n", s);
+    fprintf(stderr, "Error de sintaxis en la línea %d: %s\n", yylineno, s);
 }
 
-int main(void) {
-    return yyparse();
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <input file>\n", argv[0]);
+        return 1;
+    }
+
+    FILE *input = fopen(argv[1], "r");
+    if (!input) {
+        perror(argv[1]);
+        return 1;
+    }
+
+    yyin = input;
+    yydebug = 1;  // Activa el modo de depuración
+    yyparse();
+    fclose(input);
+    return 0;
+}
+
+void bin_to_text(const char *bin) {
+    char text[256];
+    int len = strlen(bin);
+    for (int i = 0; i < len; i += 8) {
+        char byte[9] = {0};
+        strncpy(byte, bin + i, 8);
+        text[i / 8] = strtol(byte, NULL, 2);
+    }
+    text[len / 8] = '\0';
+    printf("Binary to text: %s\n", text);
+}
+
+void text_to_bin(const char *text) {
+    char bin[2048] = {0};
+    for (int i = 0; text[i] != '\0'; i++) {
+        char byte[9];
+        for (int j = 7; j >= 0; --j) {
+            byte[j] = ((text[i] >> (7 - j)) & 1) + '0';
+        }
+        byte[8] = '\0';
+        strcat(bin, byte);
+    }
+    printf("Text to binary: %s\n", bin);
 }

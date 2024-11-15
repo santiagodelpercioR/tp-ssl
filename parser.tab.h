@@ -39,7 +39,7 @@
 # define YY_YY_PARSER_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -58,8 +58,9 @@ extern int yydebug;
     A_TEXTO = 259,                 /* A_TEXTO  */
     IMPRIMIR = 260,                /* IMPRIMIR  */
     ES = 261,                      /* ES  */
-    IDENTIFICADOR = 262,           /* IDENTIFICADOR  */
-    LITERALCADENA = 263            /* LITERALCADENA  */
+    FIN_SENTENCIA = 262,           /* FIN_SENTENCIA  */
+    IDENTIFICADOR = 263,           /* IDENTIFICADOR  */
+    LITERALCADENA = 264            /* LITERALCADENA  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -68,11 +69,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "parser.y"
+#line 17 "parser.y"
 
     char *str;
 
-#line 76 "parser.tab.h"
+#line 77 "parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

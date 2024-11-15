@@ -1,0 +1,3 @@
+a_binario myVar es "01001000"
+a_texto myVar es "Hello"
+imprimir myVar

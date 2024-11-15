@@ -1,0 +1,3 @@
+cadena1 es "hola".  
+cadenabinaria es a_binario cadena1.
+imprimir cadenabinaria.

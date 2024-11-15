@@ -1,6 +1,0 @@
-cadena1 es 'hola'.  
-cadenaBinaria es a_binario cadena1.
-imprimir cadenaBinaria.
-
-
-
