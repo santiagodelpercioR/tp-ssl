@@ -753,42 +753,42 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 21 "scanner.l"
-{ return FIN_SENTENCIA; }
+{ printf("Token: FIN_SENTENCIA\n"); return FIN_SENTENCIA; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 22 "scanner.l"
-{ printf("\nCONST_INTEGER (%s)", yytext); }
+{ printf("Token: CONST_INTEGER (%s)\n", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 23 "scanner.l"
-{ yylval.str = strdup(yytext); return LITERALCADENA; }
+{ printf("Token: LITERALCADENA (%s)\n", yytext); yylval.str = strdup(yytext); return LITERALCADENA; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 25 "scanner.l"
-{ return A_BINARIO; }
+{ printf("Token: A_BINARIO\n"); return A_BINARIO; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 26 "scanner.l"
-{ return A_TEXTO; }
+{ printf("Token: A_TEXTO\n"); return A_TEXTO; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 27 "scanner.l"
-{ return IMPRIMIR; }
+{ printf("Token: IMPRIMIR\n"); return IMPRIMIR; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 28 "scanner.l"
-{ return ES; }
+{ printf("Token: ES\n"); return ES; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 30 "scanner.l"
-{ yylval.str = strdup(yytext); return IDENTIFICADOR; }
+{ printf("Token: IDENTIFICADOR (%s)\n", yytext); yylval.str = strdup(yytext); return IDENTIFICADOR; }
 	YY_BREAK
 case 9:
 /* rule 9 can match eol */

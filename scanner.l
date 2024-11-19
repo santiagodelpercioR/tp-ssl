@@ -18,16 +18,16 @@ LITERALCADENA   \"[^\n"]*\"
 
 %%
 
-{FIN_SENTENCIA}     { return FIN_SENTENCIA; }
-{CONST_INTEGER}     { printf("\nCONST_INTEGER (%s)", yytext); }
-{LITERALCADENA}     { yylval.str = strdup(yytext); return LITERALCADENA; }
+{FIN_SENTENCIA}     { printf("Token: FIN_SENTENCIA\n"); return FIN_SENTENCIA; }
+{CONST_INTEGER}     { printf("Token: CONST_INTEGER (%s)\n", yytext); }
+{LITERALCADENA}     { printf("Token: LITERALCADENA (%s)\n", yytext); yylval.str = strdup(yytext); return LITERALCADENA; }
 
-{A_BINARIO}         { return A_BINARIO; }
-{A_TEXTO}           { return A_TEXTO; }
-{IMPRIMIR}          { return IMPRIMIR; }
-{ES}                { return ES; }
+{A_BINARIO}         { printf("Token: A_BINARIO\n"); return A_BINARIO; }
+{A_TEXTO}           { printf("Token: A_TEXTO\n"); return A_TEXTO; }
+{IMPRIMIR}          { printf("Token: IMPRIMIR\n"); return IMPRIMIR; }
+{ES}                { printf("Token: ES\n"); return ES; }
 
-{IDENTIFICADOR}     { yylval.str = strdup(yytext); return IDENTIFICADOR; }
+{IDENTIFICADOR}     { printf("Token: IDENTIFICADOR (%s)\n", yytext); yylval.str = strdup(yytext); return IDENTIFICADOR; }
 
 \n                  { yylineno++; }
 \t                  { /* ignore tabs */ }

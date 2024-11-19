@@ -1304,7 +1304,7 @@ int main(int argc, char *argv[]) {
     }
 
     yyin = input;
-    yydebug = 1;  // Activa el modo de depuración
+    // yydebug = 1;  // Activa el modo de depuración
     yyparse();
     fclose(input);
     return 0;
