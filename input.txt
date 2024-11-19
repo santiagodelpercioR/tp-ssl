@@ -1,4 +1,4 @@
 a_binario myVar es "hello".
 imprimir myVar.
-a_texto myVar es "011011010110010101110011".
+a_texto myVar es "0110100001100101011011000110110001101111".
 imprimir myVar.
