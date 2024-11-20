@@ -15,12 +15,14 @@ ES              "es"
 
 IDENTIFICADOR   [a-zA-Z_][a-zA-Z0-9_]*
 LITERALCADENA   \"[^\n"]*\"
+CARACTER        \'[^\']\'
 
 %%
 
 {FIN_SENTENCIA}     { printf("Token: FIN_SENTENCIA\n"); return FIN_SENTENCIA; }
 {CONST_INTEGER}     { printf("Token: CONST_INTEGER (%s)\n", yytext); }
 {LITERALCADENA}     { printf("Token: LITERALCADENA (%s)\n", yytext); yylval.str = strdup(yytext); return LITERALCADENA; }
+{CARACTER}          { printf("Token: CARACTER (%s)\n", yytext); yylval.str = strdup(yytext); return CARACTER; }
 
 {A_BINARIO}         { printf("Token: A_BINARIO\n"); return A_BINARIO; }
 {A_TEXTO}           { printf("Token: A_TEXTO\n"); return A_TEXTO; }
@@ -30,7 +32,7 @@ LITERALCADENA   \"[^\n"]*\"
 {IDENTIFICADOR}     { printf("Token: IDENTIFICADOR (%s)\n", yytext); yylval.str = strdup(yytext); return IDENTIFICADOR; }
 
 \n                  { yylineno++; }
-\t                  { /* ignore tabs */ }
-" "                 { /* ignore spaces */ }
+\t                  { /* ignorar tabulaciones */ }
+" "                 { /* ignorar espacios */ }
 
 %%

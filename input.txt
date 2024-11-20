@@ -2,3 +2,7 @@ a_binario myVar es "hello".
 imprimir myVar.
 a_texto myVar es "0110100001100101011011000110110001101111".
 imprimir myVar.
+myChar es 'a'.
+imprimir myChar.
+a_binario myVar es "hello".
+imprimir myVar.

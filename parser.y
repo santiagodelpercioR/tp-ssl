@@ -7,6 +7,7 @@
 typedef struct {
     char name[100];    // Nombre de la variable
     char value[2048];  // Valor de la variable
+    char type[10];     // Tipo de dato: "cadena" o "caracter"
 } Variable;
 
 #define MAX_VARIABLES 100
@@ -19,7 +20,7 @@ int yylex(void);
 void a_texto(const char *bin, char *output);
 void a_binario(const char *text, char *output);
 char* get_variable(const char *name);
-void set_variable(const char *name, const char *value);
+void set_variable(const char *name, const char *value, const char *type);
 
 extern FILE *yyin;
 extern int yylineno;  // Declaración externa de yylineno
@@ -30,7 +31,7 @@ extern int yylineno;  // Declaración externa de yylineno
 }
 
 %token <str> A_BINARIO A_TEXTO IMPRIMIR ES FIN_SENTENCIA
-%token <str> IDENTIFICADOR LITERALCADENA
+%token <str> IDENTIFICADOR LITERALCADENA CARACTER
 
 %%
 
@@ -47,12 +48,15 @@ instruccion:
     A_BINARIO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {
         char result[2048];
         a_binario($4, result);
-        set_variable($2, result);
+        set_variable($2, result, "cadena");
     }
     | A_TEXTO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {
         char result[2048];
         a_texto($4, result);
-        set_variable($2, result);
+        set_variable($2, result, "cadena");
+    }
+    | IDENTIFICADOR ES CARACTER FIN_SENTENCIA {
+        set_variable($1, $3, "caracter");
     }
     | IMPRIMIR IDENTIFICADOR FIN_SENTENCIA {
         char *value = get_variable($2);
@@ -138,12 +142,14 @@ char* get_variable(const char *name) {
     return NULL;
 }
 
-void set_variable(const char *name, const char *value) {
+void set_variable(const char *name, const char *value, const char *type) {
     // Buscar si ya existe la variable
     for (int i = 0; i < var_count; i++) {
         if (strcmp(variables[i].name, name) == 0) {
             strncpy(variables[i].value, value, sizeof(variables[i].value) - 1);
             variables[i].value[sizeof(variables[i].value) - 1] = '\0';
+            strncpy(variables[i].type, type, sizeof(variables[i].type) - 1);
+            variables[i].type[sizeof(variables[i].type) - 1] = '\0';
             return;
         }
     }
@@ -153,6 +159,8 @@ void set_variable(const char *name, const char *value) {
         variables[var_count].name[sizeof(variables[var_count].name) - 1] = '\0';
         strncpy(variables[var_count].value, value, sizeof(variables[var_count].value) - 1);
         variables[var_count].value[sizeof(variables[var_count].value) - 1] = '\0';
+        strncpy(variables[var_count].type, type, sizeof(variables[var_count].type) - 1);
+        variables[var_count].type[sizeof(variables[var_count].type) - 1] = '\0';
         var_count++;
     } else {
         fprintf(stderr, "Error: Límite de variables alcanzado.\n");

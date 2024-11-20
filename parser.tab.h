@@ -60,7 +60,8 @@ extern int yydebug;
     ES = 261,                      /* ES  */
     FIN_SENTENCIA = 262,           /* FIN_SENTENCIA  */
     IDENTIFICADOR = 263,           /* IDENTIFICADOR  */
-    LITERALCADENA = 264            /* LITERALCADENA  */
+    LITERALCADENA = 264,           /* LITERALCADENA  */
+    CARACTER = 265                 /* CARACTER  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -69,11 +70,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 28 "parser.y"
+#line 29 "parser.y"
 
     char *str;
 
-#line 77 "parser.tab.h"
+#line 78 "parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
