@@ -12,6 +12,8 @@ A_BINARIO       "a_binario"
 A_TEXTO         "a_texto"
 IMPRIMIR        "imprimir"
 ES              "es"
+ABRIR_BLOQUE    "<"
+CERRAR_BLOQUE   ">"
 
 IDENTIFICADOR   [a-zA-Z_][a-zA-Z0-9_]*
 LITERALCADENA   \"[^\n"]*\"
@@ -28,6 +30,8 @@ CARACTER        \'[^\']\'
 {A_TEXTO}           { printf("Token: A_TEXTO\n"); return A_TEXTO; }
 {IMPRIMIR}          { printf("Token: IMPRIMIR\n"); return IMPRIMIR; }
 {ES}                { printf("Token: ES\n"); return ES; }
+{ABRIR_BLOQUE}      { printf("Token: ABRIR_BLOQUE\n"); return ABRIR_BLOQUE; }
+{CERRAR_BLOQUE}     { printf("Token: CERRAR_BLOQUE\n"); return CERRAR_BLOQUE; }
 
 {IDENTIFICADOR}     { printf("Token: IDENTIFICADOR (%s)\n", yytext); yylval.str = strdup(yytext); return IDENTIFICADOR; }
 

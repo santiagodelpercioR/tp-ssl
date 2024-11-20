@@ -32,6 +32,7 @@ extern int yylineno;  // Declaración externa de yylineno
 
 %token <str> A_BINARIO A_TEXTO IMPRIMIR ES FIN_SENTENCIA
 %token <str> IDENTIFICADOR LITERALCADENA CARACTER
+%token <str> ABRIR_BLOQUE CERRAR_BLOQUE
 
 %%
 
@@ -45,6 +46,9 @@ instrucciones:
     ;
 
 instruccion:
+    ABRIR_BLOQUE sentencia CERRAR_BLOQUE 
+    ;
+sentencia:
     A_BINARIO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {
         char result[2048];
         a_binario($4, result);

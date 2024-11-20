@@ -61,7 +61,9 @@ extern int yydebug;
     FIN_SENTENCIA = 262,           /* FIN_SENTENCIA  */
     IDENTIFICADOR = 263,           /* IDENTIFICADOR  */
     LITERALCADENA = 264,           /* LITERALCADENA  */
-    CARACTER = 265                 /* CARACTER  */
+    CARACTER = 265,                /* CARACTER  */
+    ABRIR_BLOQUE = 266,            /* ABRIR_BLOQUE  */
+    CERRAR_BLOQUE = 267            /* CERRAR_BLOQUE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -74,7 +76,7 @@ union YYSTYPE
 
     char *str;
 
-#line 78 "parser.tab.h"
+#line 80 "parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
