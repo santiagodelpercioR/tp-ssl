@@ -479,8 +479,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "scannerDebug.l"
-#line 2 "scannerDebug.l"
+#line 1 "scanner.l"
+#line 2 "scanner.l"
 #include "parser.tab.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -703,7 +703,7 @@ YY_DECL
 		}
 
 	{
-#line 21 "scannerDebug.l"
+#line 21 "scanner.l"
 
 
 #line 709 "lex.yy.c"
@@ -765,58 +765,58 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 23 "scannerDebug.l"
-{printf("Token: FIN_SENTENCIA\n"); return FIN_SENTENCIA; }
+#line 23 "scanner.l"
+{ return FIN_SENTENCIA; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 24 "scannerDebug.l"
-{printf("Token: LITERALCADENA (%s)\n", yytext); yylval.str = strdup(yytext); return LITERALCADENA; }
+#line 24 "scanner.l"
+{ yylval.str = strdup(yytext); return LITERALCADENA; }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 25 "scannerDebug.l"
-{printf("Token: CARACTER (%s)\n", yytext); yylval.str = strdup(yytext); return CARACTER; }
+#line 25 "scanner.l"
+{ yylval.str = strdup(yytext); return CARACTER; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 27 "scannerDebug.l"
-{printf("Token: A_BINARIO\n"); return A_BINARIO; }
+#line 27 "scanner.l"
+{ return A_BINARIO; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 28 "scannerDebug.l"
-{printf("Token: A_TEXTO\n"); return A_TEXTO; }
+#line 28 "scanner.l"
+{ return A_TEXTO; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 29 "scannerDebug.l"
-{printf("Token: IMPRIMIR\n"); return IMPRIMIR; }
+#line 29 "scanner.l"
+{ return IMPRIMIR; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 30 "scannerDebug.l"
-{printf("Token: ES\n"); return ES; }
+#line 30 "scanner.l"
+{ return ES; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 31 "scannerDebug.l"
-{printf("Token: ABRIR_BLOQUE\n"); return ABRIR_BLOQUE; }
+#line 31 "scanner.l"
+{ return ABRIR_BLOQUE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 32 "scannerDebug.l"
-{printf("Token: CERRAR_BLOQUE\n"); return CERRAR_BLOQUE; }
+#line 32 "scanner.l"
+{ return CERRAR_BLOQUE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 34 "scannerDebug.l"
-{printf("Token: IDENTIFICADOR (%s)\n", yytext); yylval.str = strdup(yytext); return IDENTIFICADOR; }
+#line 34 "scanner.l"
+{ yylval.str = strdup(yytext); return IDENTIFICADOR; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 35 "scannerDebug.l"
+#line 35 "scanner.l"
 {
     printf("Error: Identificador demasiado largo (%s)\n", yytext);
     return -1;
@@ -825,22 +825,22 @@ YY_RULE_SETUP
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 40 "scannerDebug.l"
+#line 40 "scanner.l"
 { yylineno++; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 41 "scannerDebug.l"
-{ /* ignorar tabulaciones */ }
+#line 41 "scanner.l"
+{  }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 42 "scannerDebug.l"
-{ /* ignorar espacios */ }
+#line 42 "scanner.l"
+{  }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 45 "scannerDebug.l"
+#line 44 "scanner.l"
 ECHO;
 	YY_BREAK
 #line 846 "lex.yy.c"
@@ -1848,5 +1848,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 45 "scannerDebug.l"
+#line 44 "scanner.l"
 
