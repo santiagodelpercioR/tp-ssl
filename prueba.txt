@@ -1,3 +1,7 @@
-cadena1 es "hola".  
-cadenabinaria es a_binario cadena1.
-imprimir cadenabinaria.
+< a_binario var1 es "Texto" . >
+< imprimir var1 . >
+
+< 
+    a_binario var2 es "OtroTexto" .
+    imprimir var2 .
+>

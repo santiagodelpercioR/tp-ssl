@@ -37,19 +37,25 @@ extern int yylineno;  // Declaración externa de yylineno
 %%
 
 programa:
-    instrucciones
+    sentencias
     ;
 
-instrucciones:
-    instrucciones instruccion
-    | instruccion
-    ;
-
-instruccion:
-    ABRIR_BLOQUE sentencia CERRAR_BLOQUE 
+sentencias:
+    sentencias sentencia
+    | sentencia
     ;
 
 sentencia:
+    ABRIR_BLOQUE operaciones CERRAR_BLOQUE
+    ;
+
+operaciones:
+    operaciones operacion
+    | operacion
+    ;
+
+
+operacion:
     A_BINARIO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {
         char result[2048];
         a_binario($4, result);
@@ -62,6 +68,9 @@ sentencia:
     }
     | IDENTIFICADOR ES CARACTER FIN_SENTENCIA {
         set_variable($1, $3, "caracter");
+    }
+    | IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {  
+        set_variable($1, $3, "cadena");
     }
     | IMPRIMIR IDENTIFICADOR FIN_SENTENCIA {
         char *value = get_variable($2);
@@ -76,29 +85,40 @@ sentencia:
 %%
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Error de sintaxis: %s\n", yylineno, s);
+    fprintf(stderr, "Error de sintaxis en la línea %d: %s\n", yylineno, s);
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        fprintf(stderr, "Usage: %s <input file>\n", argv[0]);
-        return 1;
+    if (argc > 1) {
+        // Si se pasa un archivo como argumento, lo abre
+        FILE *input = fopen(argv[1], "r");
+        if (!input) {
+            perror(argv[1]);
+            return 1;
+        }
+        yyin = input;
+    } else {
+        // Si no se pasa archivo, usa la entrada estándar
+        yyin = stdin;
+        printf("Ingrese texto para analizar (Ctrl+D para finalizar en Linux/Mac, Ctrl+Z en Windows):\n");
     }
 
-    FILE *input = fopen(argv[1], "r");
-    if (!input) {
-        perror(argv[1]);
-        return 1;
-    }
-
-    yyin = input;
     // yydebug = 1;  // Activa el modo de depuración
-    yyparse();
-    fclose(input);
+    yyparse();  // Llama al parser
+
+    // Si se abrió un archivo, lo cierra
+    if (argc > 1) {
+        fclose(yyin);
+    }
+
     return 0;
 }
 
 void a_texto(const char *bin, char *output) {
+    if (strlen(bin) == 0) {
+        snprintf(output, 2048, "Error: Binario vacío.");
+        return;
+    }
     char clean_bin[512];
     int len = strlen(bin);
 
@@ -127,6 +147,10 @@ void a_texto(const char *bin, char *output) {
 }
 
 void a_binario(const char *text, char *output) {
+    if (strlen(text) == 0) {
+        snprintf(output, 2048, "Error: Texto vacío.");
+        return;
+    }
     output[0] = '\0'; // Iniciar cadena vacía
     for (int i = 0; text[i] != '\0'; i++) {
         char byte[9];
@@ -151,6 +175,7 @@ void set_variable(const char *name, const char *value, const char *type) {
     // Buscar si ya existe la variable
     for (int i = 0; i < var_count; i++) {
         if (strcmp(variables[i].name, name) == 0) {
+            // Sobrescribir el valor y el tipo
             strncpy(variables[i].value, value, sizeof(variables[i].value) - 1);
             variables[i].value[sizeof(variables[i].value) - 1] = '\0';
             strncpy(variables[i].type, type, sizeof(variables[i].type) - 1);

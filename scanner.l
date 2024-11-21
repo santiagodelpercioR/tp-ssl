@@ -32,7 +32,7 @@ CARACTER        \'[^\']\'
 {CERRAR_BLOQUE}     { printf("Token: CERRAR_BLOQUE\n"); return CERRAR_BLOQUE; }
 
 {IDENTIFICADOR}     { printf("Token: IDENTIFICADOR (%s)\n", yytext); yylval.str = strdup(yytext); return IDENTIFICADOR; }
-[a-zA-Z_][a-zA-Z0-9_]{10,} {
+[a-z][a-zA-Z0-9]{16,} {
     printf("Error: Identificador demasiado largo (%s)\n", yytext);
     return -1;
 }
@@ -40,5 +40,6 @@ CARACTER        \'[^\']\'
 \n                  { yylineno++; }
 \t                  { /* ignorar tabulaciones */ }
 " "                 { /* ignorar espacios */ }
+
 
 %%
