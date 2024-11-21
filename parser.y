@@ -37,7 +37,11 @@ extern int yylineno;  // Declaración externa de yylineno
 %%
 
 programa:
-    sentencias
+    bloque
+    ;
+
+bloque:
+    ABRIR_BLOQUE sentencias CERRAR_BLOQUE
     ;
 
 sentencias:
@@ -46,14 +50,8 @@ sentencias:
     ;
 
 sentencia:
-    ABRIR_BLOQUE operaciones CERRAR_BLOQUE
+    operacion
     ;
-
-operaciones:
-    operaciones operacion
-    | operacion
-    ;
-
 
 operacion:
     LITERALCADENA A_BINARIO ES IDENTIFICADOR FIN_SENTENCIA {
