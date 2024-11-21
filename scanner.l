@@ -15,7 +15,7 @@ ES              "es"
 ABRIR_BLOQUE    "<"
 CERRAR_BLOQUE   ">"
 
-IDENTIFICADOR   [a-zA-Z_][a-zA-Z0-9_]*
+IDENTIFICADOR   [a-z][a-zA-Z0-9]{0,15}
 LITERALCADENA   \"[^\n"]*\"
 CARACTER        \'[^\']\'
 
@@ -34,6 +34,10 @@ CARACTER        \'[^\']\'
 {CERRAR_BLOQUE}     { printf("Token: CERRAR_BLOQUE\n"); return CERRAR_BLOQUE; }
 
 {IDENTIFICADOR}     { printf("Token: IDENTIFICADOR (%s)\n", yytext); yylval.str = strdup(yytext); return IDENTIFICADOR; }
+[a-zA-Z_][a-zA-Z0-9_]{10,} {
+    printf("Error: Identificador demasiado largo (%s)\n", yytext);
+    return -1;
+}
 
 \n                  { yylineno++; }
 \t                  { /* ignorar tabulaciones */ }

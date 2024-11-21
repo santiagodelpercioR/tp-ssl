@@ -48,6 +48,7 @@ instrucciones:
 instruccion:
     ABRIR_BLOQUE sentencia CERRAR_BLOQUE 
     ;
+
 sentencia:
     A_BINARIO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {
         char result[2048];
@@ -75,7 +76,7 @@ sentencia:
 %%
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Error de sintaxis en la línea %d: %s\n", yylineno, s);
+    fprintf(stderr, "Error de sintaxis: %s\n", yylineno, s);
 }
 
 int main(int argc, char *argv[]) {

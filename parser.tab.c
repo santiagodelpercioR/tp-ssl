@@ -527,7 +527,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    40,    40,    44,    45,    49,    52,    57,    62,    65
+       0,    40,    40,    44,    45,    49,    53,    58,    63,    66
 };
 #endif
 
@@ -1096,7 +1096,7 @@ yyreduce:
   switch (yyn)
     {
   case 6: /* sentencia: A_BINARIO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA  */
-#line 52 "parser.y"
+#line 53 "parser.y"
                                                            {
         char result[2048];
         a_binario((yyvsp[-1].str), result);
@@ -1106,7 +1106,7 @@ yyreduce:
     break;
 
   case 7: /* sentencia: A_TEXTO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA  */
-#line 57 "parser.y"
+#line 58 "parser.y"
                                                            {
         char result[2048];
         a_texto((yyvsp[-1].str), result);
@@ -1116,7 +1116,7 @@ yyreduce:
     break;
 
   case 8: /* sentencia: IDENTIFICADOR ES CARACTER FIN_SENTENCIA  */
-#line 62 "parser.y"
+#line 63 "parser.y"
                                               {
         set_variable((yyvsp[-3].str), (yyvsp[-1].str), "caracter");
     }
@@ -1124,7 +1124,7 @@ yyreduce:
     break;
 
   case 9: /* sentencia: IMPRIMIR IDENTIFICADOR FIN_SENTENCIA  */
-#line 65 "parser.y"
+#line 66 "parser.y"
                                            {
         char *value = get_variable((yyvsp[-1].str));
         if (value) {
@@ -1330,11 +1330,11 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 75 "parser.y"
+#line 76 "parser.y"
 
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Error de sintaxis en la línea %d: %s\n", yylineno, s);
+    fprintf(stderr, "Error de sintaxis: %s\n", yylineno, s);
 }
 
 int main(int argc, char *argv[]) {
