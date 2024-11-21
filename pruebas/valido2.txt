@@ -1,0 +1,4 @@
+< a_binario var1 es "1101010101010101" . >
+< a_texto var2 es "CadenaValida" . >
+< myVar es 'z' . >
+

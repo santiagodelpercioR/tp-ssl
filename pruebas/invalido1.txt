@@ -1,0 +1,5 @@
+< a_binario miVariableMuyLarga es "hello" . >
+< imprimir miVariableMuyLarga . >
+
+< a_texto miVariableMuyLarga es "cadenaTest" . >
+

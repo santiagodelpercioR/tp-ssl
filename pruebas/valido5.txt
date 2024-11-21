@@ -1,0 +1,16 @@
+< 
+    a_binario var1 es "0110010101100101" . 
+    imprimir var1 . 
+>
+
+< 
+    a_texto var1 es "NuevoTexto" . 
+    imprimir var1 . 
+>
+
+< 
+    a_binario var2 es "110011001100" . 
+    imprimir var2 . 
+    myVar es "CadenaFinal" . 
+    imprimir myVar . 
+>
