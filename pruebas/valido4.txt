@@ -1,5 +1,4 @@
-< a_binario var1 es "010101010101" . >
-< imprimir var1 . >
-
-< a_texto var2 es "TextoValido" . >
-< imprimir var2 . >
+< 
+"Texto" a_binario es var1.
+imprimir var1.
+>

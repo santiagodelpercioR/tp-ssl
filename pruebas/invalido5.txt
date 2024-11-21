@@ -1,3 +1,1 @@
-< myVar es "Cadena" . >
-< a_binario myVar es '1' . >
-< imprimir myVar . >
+imprimir var1.

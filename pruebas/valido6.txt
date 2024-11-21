@@ -1,4 +1,8 @@
 < 
 "Texto" a_binario es var1.
 "Texto" a_texto es var2.
+var3 es 'a'.
+>
 <imprimir var1.>
+<imprimir var2.>
+<imprimir var3.>

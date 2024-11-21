@@ -1,7 +1,7 @@
-< a_binario var1 es "Texto" . >
-< imprimir var1 . >
-
 < 
-    a_binario var2 es "OtroTexto" .
-    imprimir var2 .
+"Texto" a_binario es var1.
+"Texto" a_texto es var2.
 >
+<imprimir var1.>
+<imprimir var2.>
+

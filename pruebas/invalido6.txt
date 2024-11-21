@@ -1,4 +1,5 @@
 < 
 "Texto" a_binario es var1.
-"Texto" a_texto es var2.
+imprimir var1.
 >
+<imprimir var2.>

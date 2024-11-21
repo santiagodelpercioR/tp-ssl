@@ -1366,6 +1366,9 @@ int main(int argc, char *argv[]) {
         printf("Ingrese texto para analizar (Ctrl+D para finalizar en Linux/Mac, Ctrl+Z en Windows):\n");
     }
 
+    // Limpiar las variables antes de cada nueva ejecución
+    var_count = 0;  // Reinicia el contador de variables
+
     // yydebug = 1;  // Activa el modo de depuración
     yyparse();  // Llama al parser
 
@@ -1376,6 +1379,7 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
 
 void a_texto(const char *bin, char *output) {
     if (strlen(bin) == 0) {

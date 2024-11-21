@@ -56,28 +56,25 @@ operaciones:
 
 
 operacion:
-    A_BINARIO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {
+    LITERALCADENA A_BINARIO ES IDENTIFICADOR FIN_SENTENCIA {
         char result[2048];
-        a_binario($4, result);
-        set_variable($2, result, "cadena");
+        a_binario($1, result); // Convertir el literal a binario
+        set_variable($3, result, "cadena"); // Guardar el resultado en la variable
     }
-    | A_TEXTO IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {
+    | LITERALCADENA A_TEXTO ES IDENTIFICADOR FIN_SENTENCIA {
         char result[2048];
-        a_texto($4, result);
-        set_variable($2, result, "cadena");
+        a_texto($1, result); // Convertir el literal a texto
+        set_variable($3, result, "cadena"); // Guardar el resultado en la variable
     }
     | IDENTIFICADOR ES CARACTER FIN_SENTENCIA {
-        set_variable($1, $3, "caracter");
-    }
-    | IDENTIFICADOR ES LITERALCADENA FIN_SENTENCIA {  
-        set_variable($1, $3, "cadena");
+        set_variable($1, $3, "caracter"); // Asignar el valor del carácter a la variable
     }
     | IMPRIMIR IDENTIFICADOR FIN_SENTENCIA {
         char *value = get_variable($2);
         if (value) {
-            printf("%s\n", value);
+            printf("%s\n", value); // Imprimir el valor de la variable
         } else {
-            printf("Error: Variable '%s' no definida.\n", $2);
+            printf("Error: Variable '%s' no definida.\n", $2); // Error si la variable no está definida
         }
     }
     ;
@@ -103,6 +100,9 @@ int main(int argc, char *argv[]) {
         printf("Ingrese texto para analizar (Ctrl+D para finalizar en Linux/Mac, Ctrl+Z en Windows):\n");
     }
 
+    // Limpiar las variables antes de cada nueva ejecución
+    var_count = 0;  // Reinicia el contador de variables
+
     // yydebug = 1;  // Activa el modo de depuración
     yyparse();  // Llama al parser
 
@@ -113,6 +113,7 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
 
 void a_texto(const char *bin, char *output) {
     if (strlen(bin) == 0) {
