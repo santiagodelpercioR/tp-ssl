@@ -1,6 +1,6 @@
 <
-"holaMundo" a_binario es var1.
-imprimir var1.
+"holaMundo" a_binario es vAr1.
+imprimir vAr1.
 >
 
 

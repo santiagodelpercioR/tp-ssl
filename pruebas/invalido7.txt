@@ -1,0 +1,4 @@
+<
+"holaMundo" a_binario es varsdajkldjaslkdjaskldasjdsakjldjsakl.
+imprimir var1.
+>

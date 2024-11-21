@@ -36,6 +36,10 @@ CARACTER        \'[^\']\'
     printf("Error: Identificador demasiado largo (%s)\n", yytext);
     return -1;
 }
+[A-Z][a-zA-Z0-9] {
+    printf("Error: Identificador comienza con mayuscula (%s)\n", yytext);
+    return -1;
+}
 
 \n                  { yylineno++; }
 \t                  {  }

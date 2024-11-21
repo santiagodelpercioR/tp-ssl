@@ -73,19 +73,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Estructura para almacenar las variables y sus valores
 typedef struct {
-    char name[100];    // Nombre de la variable
-    char value[2048];  // Valor de la variable
-    char type[10];     // Tipo de dato: "cadena" o "caracter"
+    char name[100];
+    char value[2048];
+    char type[10];
 } Variable;
 
-#define MAX_VARIABLES 100
+#define MAX_VARIABLES 100           
 Variable variables[MAX_VARIABLES];
 int var_count = 0;
 
 void yyerror(const char *s);
-int yylex(void);
+int yylex(void);       
 
 void a_texto(const char *bin, char *output);
 void a_binario(const char *text, char *output);
@@ -93,9 +92,9 @@ char* get_variable(const char *name);
 void set_variable(const char *name, const char *value, const char *type);
 
 extern FILE *yyin;
-extern int yylineno;  // Declaración externa de yylineno
+extern int yylineno;
 
-#line 99 "parser.tab.c"
+#line 98 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -529,8 +528,8 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    40,    40,    44,    45,    49,    53,    54,    58,    62,
-      67,    72,    75,    78
+       0,    39,    39,    43,    44,    48,    52,    53,    57,    61,
+      66,    71,    74,    77
 };
 #endif
 
@@ -1104,43 +1103,43 @@ yyreduce:
   switch (yyn)
     {
   case 9: /* operacion: LITERALCADENA A_BINARIO ES IDENTIFICADOR FIN_SENTENCIA  */
-#line 62 "parser.y"
+#line 61 "parser.y"
                                                            {
         char result[2048];
         a_binario((yyvsp[-4].str), result); // Convertir el literal a binario
-        set_variable((yyvsp[-1].str), result, "cadena"); 
+        set_variable((yyvsp[-1].str), result, "cadena");                   
     }
-#line 1114 "parser.tab.c"
+#line 1113 "parser.tab.c"
     break;
 
   case 10: /* operacion: LITERALCADENA A_TEXTO ES IDENTIFICADOR FIN_SENTENCIA  */
-#line 67 "parser.y"
+#line 66 "parser.y"
                                                            {
-        char result[2048];
-        a_texto((yyvsp[-4].str), result); // Convertir el literal a texto
-        set_variable((yyvsp[-1].str), result, "cadena"); 
+        char result[2048];                                          
+        a_texto((yyvsp[-4].str), result);                                        
+        set_variable((yyvsp[-1].str), result, "cadena");                       
     }
-#line 1124 "parser.tab.c"
+#line 1123 "parser.tab.c"
     break;
 
   case 11: /* operacion: CARACTER ES IDENTIFICADOR FIN_SENTENCIA  */
-#line 72 "parser.y"
+#line 71 "parser.y"
                                               {
         set_variable((yyvsp[-1].str), (yyvsp[-3].str), "caracter"); 
     }
-#line 1132 "parser.tab.c"
+#line 1131 "parser.tab.c"
     break;
 
   case 12: /* operacion: LITERALCADENA ES IDENTIFICADOR FIN_SENTENCIA  */
-#line 75 "parser.y"
+#line 74 "parser.y"
                                                    {
         set_variable((yyvsp[-1].str), (yyvsp[-3].str), "cadena"); 
     }
-#line 1140 "parser.tab.c"
+#line 1139 "parser.tab.c"
     break;
 
   case 13: /* operacion: IMPRIMIR IDENTIFICADOR FIN_SENTENCIA  */
-#line 78 "parser.y"
+#line 77 "parser.y"
                                            {
         char *value = get_variable((yyvsp[-1].str));
         if (value) {
@@ -1149,11 +1148,11 @@ yyreduce:
             printf("Error: Variable '%s' no definida.\n", (yyvsp[-1].str));
         }
     }
-#line 1153 "parser.tab.c"
+#line 1152 "parser.tab.c"
     break;
 
 
-#line 1157 "parser.tab.c"
+#line 1156 "parser.tab.c"
 
       default: break;
     }
@@ -1346,7 +1345,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 89 "parser.y"
+#line 87 "parser.y"
 
 
 void yyerror(const char *s) {
@@ -1355,34 +1354,18 @@ void yyerror(const char *s) {
 
 int main(int argc, char *argv[]) {
     if (argc > 1) {
-        // Si se pasa un archivo como argumento, lo abre
         FILE *input = fopen(argv[1], "r");
         if (!input) {
             perror(argv[1]);
             return 1;
         }
         yyin = input;
-    } else {
-        // Si no se pasa archivo, usa la entrada estándar
-        yyin = stdin;
-        printf("Ingrese texto para analizar (Ctrl+D para finalizar en Linux/Mac, Ctrl+Z en Windows):\n");
     }
-
-    // No reiniciar las variables al comenzar un nuevo análisis
-    // var_count = 0;  // Eliminado para que las variables persistan entre ejecuciones de yyparse
-
-    // Limpiar las variables solo al finalizar
-    // yydebug = 1;  // Activa el modo de depuración
-    yyparse();  // Llama al parser
-
-    // Al finalizar el análisis, limpiar las variables
-    var_count = 0;  // Ahora se limpia solo al final, no entre ejecuciones
-
-    // Si se abrió un archivo, lo cierra
+    yyparse();
+    var_count = 0; 
     if (argc > 1) {
         fclose(yyin);
     }
-
     return 0;
 }
 
@@ -1391,11 +1374,9 @@ void a_texto(const char *bin, char *output) {
         snprintf(output, 2048, "Error: Binario vacío.");
         return;
     }
-
     char clean_bin[512];
     int len = strlen(bin);
 
-    // Remover las comillas si están presentes
     if (bin[0] == '"' && bin[len - 1] == '"') {
         strncpy(clean_bin, bin + 1, len - 2);
         clean_bin[len - 2] = '\0';
@@ -1416,7 +1397,7 @@ void a_texto(const char *bin, char *output) {
         strncpy(byte, clean_bin + i, 8);
         output[i / 8] = (char)strtol(byte, NULL, 2);
     }
-    output[len / 8] = '\0'; // Terminar la cadena
+    output[len / 8] = '\0';
 }
 
 
@@ -1425,11 +1406,9 @@ void a_binario(const char *text, char *output) {
         snprintf(output, 2048, "Error: Texto vacío.");
         return;
     }
-
     char clean_text[2048];
     int len = strlen(text);
 
-    // Remover comillas
     if (text[0] == '"' && text[len - 1] == '"') {
         strncpy(clean_text, text + 1, len - 2);
         clean_text[len - 2] = '\0';
@@ -1449,12 +1428,10 @@ void a_binario(const char *text, char *output) {
     }
 }
 
-
 char* get_variable(const char *name) {
     char clean_name[2048];
     int len = strlen(name);
 
-    // Remover comillas si están presentes
     if (name[0] == '"' && name[len - 1] == '"') {
         strncpy(clean_name, name + 1, len - 2);
         clean_name[len - 2] = '\0';
@@ -1464,7 +1441,6 @@ char* get_variable(const char *name) {
     }
 
     for (int i = 0; i < var_count; i++) {
-        //printf("Buscando variable %s, comparando con %s\n", clean_name, variables[i].name);  // Mensaje de depuración
         if (strcmp(variables[i].name, clean_name) == 0) {
             return variables[i].value;
         }
@@ -1472,13 +1448,10 @@ char* get_variable(const char *name) {
     return NULL;
 }
 
-
-
 void set_variable(const char *name, const char *value, const char *type) {
     char clean_value[2048];
     int len = strlen(value);
 
-    // Remover comillas si están presentes
     if (value[0] == '"' && value[len - 1] == '"') {
         strncpy(clean_value, value + 1, len - 2);
         clean_value[len - 2] = '\0';
@@ -1487,28 +1460,28 @@ void set_variable(const char *name, const char *value, const char *type) {
         clean_value[len] = '\0';
     }
 
-    // Buscar si ya existe la variable
+    // Busco si existe la variable
     for (int i = 0; i < var_count; i++) {
         if (strcmp(variables[i].name, name) == 0) {
-            // Sobrescribir el valor y el tipo
+            // Sobrescribo
             strncpy(variables[i].value, clean_value, sizeof(variables[i].value) - 1);
             variables[i].value[sizeof(variables[i].value) - 1] = '\0';
             strncpy(variables[i].type, type, sizeof(variables[i].type) - 1);
             variables[i].type[sizeof(variables[i].type) - 1] = '\0';
-            //printf("Variable %s redefinida como %s\n", name, clean_value);
             return;
         }
     }
 
-    // Si no existe, agregar una nueva
+    // Si no existe, agrego nueva
     if (var_count < MAX_VARIABLES) {
         strncpy(variables[var_count].name, name, sizeof(variables[var_count].name) - 1);
         variables[var_count].name[sizeof(variables[var_count].name) - 1] = '\0';
+
         strncpy(variables[var_count].value, clean_value, sizeof(variables[var_count].value) - 1);
         variables[var_count].value[sizeof(variables[var_count].value) - 1] = '\0';
+        
         strncpy(variables[var_count].type, type, sizeof(variables[var_count].type) - 1);
         variables[var_count].type[sizeof(variables[var_count].type) - 1] = '\0';
-        //printf("Variable %s definida como %s\n", name, clean_value);
         var_count++;
     } else {
         fprintf(stderr, "Error: Límite de variables alcanzado.\n");
