@@ -5,7 +5,6 @@
 #include <string.h>
 %}
 
-CONST_INTEGER   (-?[1-9][0-9]{0,4})|0
 FIN_SENTENCIA   ["."]
 
 A_BINARIO       "a_binario"
@@ -22,7 +21,6 @@ CARACTER        \'[^\']\'
 %%
 
 {FIN_SENTENCIA}     { printf("Token: FIN_SENTENCIA\n"); return FIN_SENTENCIA; }
-{CONST_INTEGER}     { printf("Token: CONST_INTEGER (%s)\n", yytext); }
 {LITERALCADENA}     { printf("Token: LITERALCADENA (%s)\n", yytext); yylval.str = strdup(yytext); return LITERALCADENA; }
 {CARACTER}          { printf("Token: CARACTER (%s)\n", yytext); yylval.str = strdup(yytext); return CARACTER; }
 
