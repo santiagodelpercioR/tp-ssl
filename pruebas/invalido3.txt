@@ -1,5 +1,1 @@
-< 
-"Texto" a_binario es var1.
-<imprimir var1.>
->
-
+"Texto" es var5.

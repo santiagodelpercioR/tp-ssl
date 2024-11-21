@@ -1,7 +1,7 @@
-<a_binario myVar es "hello".>
+<"hello" a_binario es myVar.>
 <imprimir myVar.>
-<a_texto myVar es "0110110101101001011011000110000101101110011001010111001101100001".>
+<"0110110101101001011011000110000101101110011001010111001101100001" a_texto es myVar.>
 <imprimir myVar.>
-<myChar es 'a'.>
+<'a' es myChar .>
 
 

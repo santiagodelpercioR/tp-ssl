@@ -1,4 +1,6 @@
 < 
-"Texto" a_binario es var1.
-"Texto" a_texto es var2.
+"vacaciones" a_binario es var1.
+imprimir var1.
+"01110110011000010110001101100001011000110110100101101111011011100110010101110011" a_texto es var2.
+imprimir var2.
 >
