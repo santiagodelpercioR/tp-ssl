@@ -1,4 +1,4 @@
-TP Anual sintaxis K2005.
+TP Anual sintaxis K2005 2024 grupo 6
 
 Objetivos:
 
